@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://github.com/alex-anie/ClouldflareGPT/blob/main/src/assets/clouldflare.png?raw=true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudflareGPT - Cloudflare AI Challenge</title>
+    <meta name="description" content="Cloudflare AI Challenge">
+    <meta name="keywords" content="Workers AI, Open Models, Text Generation, Speech Recognition">
+    <meta name="author" content="Alex Anie">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+      *, *::after, *::before {
+        font-family: var(--quicksand);
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      :root {
+          --quicksand: "Quicksand", sans-serif;
+
+          /* Colors */
+          --bg-sidebar: #171717;
+          --bg-main: #212121;
+          --fainted-gray: #212121;
+      }
+
+      /* Main */
+      .site {
+        display: flex;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        display: none;
+        background-color: var(--bg-sidebar);
+        width: 18em;
+        height: 100vh;
+        color: white;
+        position: relative;
+      }
+
+      @media (min-width: 768px) {
+        .sidebar {
+          display: block;
+        }
+      }
+
+      .sidebar-container {
+        width: 90%;
+        margin: 1em auto;
+      }
+
+      .new-chat-logo div {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        border-radius: 100px;
+        padding: 1px;
+      }
+
+      .sidebar nav {
+        background-color: var(--bg-sidebar);
+        width: 90%;
+        position: absolute;
+        top: 1em;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      .sidebar .new-chat-logo {
+          display: flex;
+          justify-content: space-between;
+          cursor: pointer;
+          border-radius: 10px;
+          padding: 6px;
+      }
+
+      .sidebar .new-chat-logo:hover {
+        background-color: rgba(255,255,255, 0.2);
+      }
+
+      /* History */
+      .history {
+        margin-top: 4em;
+        height: 24em;
+        border: 2px solid red;
+
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: 20px;
+        scr
+      }
+
+      .history ul li {
+        font-size: 12px;
+        padding: 4px;
+        margin: 4px;
+        cursor: pointer;
+        border-radius: 10px;
+        list-style-type: none;
+      }
+      .history ul li:hover{
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    </style>
+  </head>
+  <body>
+    <main class="site">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <section class="sidebar-container">
+          <header>
+            <nav>
+              <div class="new-chat-logo">
+                <div>
+                  <img src="https://github.com/alex-anie/ClouldflareGPT/blob/main/src/assets/clouldflare.png?raw=true" alt="">
+                </div>
+                <p>New Chat</p>
+              </div>
+
+              <div class="new-chat-icon">
+                  <div>
+
+                  </div>
+              </div>
+
+            </nav>
+
+            <!-- History -->
+            <div class="history">
+              <ul>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+                <li>history one</li>
+              </ul>
+            </div>
+          </header>
+        </section>
+      </aside>
+
+      <!-- Main Content -->
+      <article>
+        <section>
+          <h1>CloudflareGPT</h1>
+    
+           <!-- Content -->
+           <div id="response">
+            
+           </div>
+    
+              <!-- Input section -->
+              <section>
+                <form id="mydata">
+                  <input 
+                    autofocus
+                    name="query"
+                    placeholder="Ask CloudflareGPT any questions" 
+                    type="text" 
+                  >
+                  </input>
+                  <button type="submit">Ask</button>
+                </form>
+               </section>
+        </section>
+      </article>
+    </main>
+
+    <script>
+      const returnResponse = async (formEvent) => {
+        formEvent.preventDefault()
+
+        document.querySelector("div#response").innerHTML = ''
+
+        const url = `/stream?query=${formEvent.target.query.value}`
+        const source = new EventSource(url)
+        source.onmessage = (event) => {
+          if (event.data === "[DONE]") {
+            source.close()
+            formEvent.target.query.value = ""
+            return
+          }
+          const data = JSON.parse(event.data)
+          document.querySelector("div#response").innerHTML += data.response
+        }
+      }
+
+      document.querySelector("#mydata").addEventListener("submit", returnResponse)
+    </script>
+  </body>
+</html>
