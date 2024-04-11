@@ -501,6 +501,29 @@
   line-height: 30px;
 }
 
+/* Rotate Button */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    border-radius: 10px;
+    opacity: 1;
+    border: 2px solid initial;
+    box-shadow: inset 2px 2px 2px 2px orange;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-radius: 100px;
+    opacity: 0;
+    border: 2px solid orange;
+    box-shadow: inset 2px 2px 2px 2px white;
+
+  }
+}
+
+.rotating{
+  animation: rotate 1s infinite linear;
+}
+
     </style>
   </head>
   <body>
@@ -529,32 +552,7 @@
             <!-- History -->
             <div class="history cus-scrollbar">
               <ul>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
-                <li>history one</li>
+             
               </ul>
             </div>
 
@@ -720,17 +718,19 @@
       const h1Els = document.querySelectorAll(".sample-text-container");
       const responseEl = document.querySelector("#response");
       const inputData = document.querySelector("#inputData");
-      const historyList = document.querySelector('.history ul')
+      const historyList = document.querySelector('.history ul');
+      // const historyLi = document.querySelector('.history ul');
+      const submitBtn = document.querySelector('button[type="submit"]');
 
-      // console.log(submit)
+      console.log(submitBtn)
 
       const returnResponse = async (formEvent) => {
         formEvent.preventDefault()
 
+        submitBtn.classList.add('rotating');
+
         responseEl.innerHTML = '';
         responseEl.classList.add('response', 'cus-scrollbar');
-
-        // responseEl.className = 'response';
 
         const url = `/stream?query=${formEvent.target.query.value}`
         const source = new EventSource(url)
@@ -739,22 +739,25 @@
           if (event.data === "[DONE]") {
             source.close()
             formEvent.target.query.value = ""
+
+            // Stop rotating the submit button when the promise is resolved
+            submitBtn.classList.remove('rotating');
             return
           }
-
-          // my code
-          const li = document.createElement('li');
-            const inputData = document.querySelector('#inputData')
-            li.textContent = inputData.value;
-            historyList.appendChild(li);
-            console.log(li)
-            console.log(inputData.value)
-
-          // end
 
           const data = JSON.parse(event.data)
           document.querySelector("div#response").innerHTML += data.response
         }
+
+        const li = document.createElement('li');
+        li.textContent = inputData.value;
+        historyList.appendChild(li); // Element is not append here
+
+        li.addEventListener('click', (e)=>{
+            inputData.value = e.currentTarget.textContent;
+        })
+        
+        console.log('two',li);
       }
 
       formEl.addEventListener("submit", returnResponse);
@@ -765,6 +768,7 @@
           inputData.value = headingContent;
         })
       })
+
     </script>
   </body>
 </html>
