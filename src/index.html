@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
+
     <style>
       *, *::after, *::before {
         font-family: var(--quicksand);
@@ -22,6 +23,11 @@
 
       img {
         width: 100%;
+      }
+
+      a{
+        text-decoration: none;
+        color: white;
       }
 
       :root {
@@ -198,6 +204,17 @@
     color: var(--fainted-gray);
   }
 
+
+  .off {
+      display: none;
+  }
+
+  @media (min-width: 768px) {
+        .off {
+          display: block;
+        }
+      }
+
   .bottom-info .user-profile {
     padding: 4px;
     border-radius: 10px;
@@ -230,15 +247,269 @@
     transform: translateY(-5px);
   }
 
+  /* Main Content */
+  .main-content {
+    background-color: var(--bg-main);
+    height: 100vh;
+    width: 100%;
+    color: white;
+  }
+
+  .main-content header nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 2em;
+  }
+
+  .main-content header nav .hamburger-icon {
+    padding: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.5s ease;
+  }
+
+  .main-content header nav .hamburger-icon:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .main-content header nav .hamburger-icon svg {
+    display: inline-block;
+  }
+
+  @media (min-width: 768px) {
+    .main-content header nav .hamburger-icon {
+        display: none;
+    }
+  }
+
+ .main-content .heading-text {
+    display: flex;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.5s ease;
+  }
+
+  .main-content .heading-text:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .main-content .github-link {
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.5s ease;
+  }
+
+  .main-content .github-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .main-content .github-link a {
+     text-decoration: none;
+     color: white;
+  }
+
+/*display-content*/
+.main-content .display-content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content .cloudflare-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.main-content .cloudflare-logo-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-content .cloudflare-logo-wrapper {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.main-content .cloudflare-logo-container h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.main-content .sample-text {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1em;
+}
+
+@media (min-width: 768px) {
+  .main-content .sample-text {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.main-content .sample-text-container {
+  border: 1px solid var(--fainted-gray);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.main-content .sample-text-container:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-content .sample-text-container h1 {
+  font-size: 14px;
+}
+
+.main-content .sample-text-container p {
+  font-size: 11px;
+  color: var(--fainted-gray);
+}
+
+.main-content .sample-text-container .arrow-up-container {
+  display: none;
+  background-color: var(--bg-sidebar);
+  padding: 1px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 5px;
+  position: absolute;
+  right: 5px;
+  bottom: 13px;
+}
+
+.main-content .sample-text-container:hover .arrow-up-container {
+  display: block;
+}
+
+/* input section */
+
+.input-section {
+  width: 80%;
+  margin: 4px auto;
+  position: absolute;
+  bottom: 3.5em;
+  left: 0;
+  right: 0;
+  /* left: 35%; */
+}
+
+@media (min-width: 768px) {
+  .input-section {
+      width: 50%;
+      position: absolute;
+      bottom: 3.5em;
+      left: 35%;
+      margin: 0;
+  }
+}
+    
+.input-section .mydata{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid var(--fainted-gray);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.input-section .mydata input {
+  width: 80%;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  color : white;
+  font-size: 16px;
+}
+
+.input-section .mydata input::placeholder {
+  color: white;
+
+}
+
+.input-section .mydata:focus-within {
+  outline: 1px solid var(--fainted-gray);
+}
+
+.input-section .mydata input:focus {
+  outline: none; 
+}
+
+.input-section .mydata button {
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    background-color: var(--fainted-gray);
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.5s ease;
+}
+
+.input-section .mydata button:hover {
+  background-color: var(--bg-sidebar);
+}
+
+.input-section .copyright {
+  margin: 1em auto;
+  font-size: 14px;
+  color: var(--fainted-gray);
+  text-align: center;
+}
+
+.input-section .copyright a{
+  color: white;
+  text-decoration: none;
+}
+
+.input-section .copyright a:hover {
+  color: orange;
+  text-decoration: underline;
+}
+
+/* RESPONSE ELEMENT */
+.main-content .response {
+  width: 60%;
+  height: 300px;
+  margin: 10px auto;
+  padding: 20px;
+  overflow-y:auto;
+  line-height: 30px;
+}
+
     </style>
   </head>
   <body>
     <main class="site">
-
       <!-- Sidebar -->
       <aside class="sidebar">
         <section class="sidebar-container">
           <header>
+            <a href="/">
             <nav>
               <div class="new-chat-logo">
                 <div>
@@ -252,8 +523,8 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md"><path fillRule="evenodd" clipRule="evenodd" d="M16.7929 2.79289C18.0118 1.57394 19.9882 1.57394 21.2071 2.79289C22.4261 4.01184 22.4261 5.98815 21.2071 7.20711L12.7071 15.7071C12.5196 15.8946 12.2652 16 12 16H9C8.44772 16 8 15.5523 8 15V12C8 11.7348 8.10536 11.4804 8.29289 11.2929L16.7929 2.79289ZM19.7929 4.20711C19.355 3.7692 18.645 3.7692 18.2071 4.2071L10 12.4142V14H11.5858L19.7929 5.79289C20.2308 5.35499 20.2308 4.64501 19.7929 4.20711ZM6 5C5.44772 5 5 5.44771 5 6V18C5 18.5523 5.44772 19 6 19H18C18.5523 19 19 18.5523 19 18V14C19 13.4477 19.4477 13 20 13C20.5523 13 21 13.4477 21 14V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6C3 4.34314 4.34315 3 6 3H10C10.5523 3 11 3.44771 11 4C11 4.55228 10.5523 5 10 5H6Z" fill="currentColor"></path></svg>
                   </div>
               </div>
-
             </nav>
+          </a>
 
             <!-- History -->
             <div class="history cus-scrollbar">
@@ -316,52 +587,184 @@
       </aside>
 
       <!-- Main Content -->
-      <article>
-        <section>
-          <h1>CloudflareGPT</h1>
+      <article class="main-content">
+        <section class="main-content-section">
+          <!-- Heading section -->
+          <header>
+            <nav class="">
+              <!-- Hamburger Icon  -->
+              <div class="hamburger-icon">
+                  <div>
+                     <!-- SVG -->
+                     <!-- https://feathericons.dev/?search=align-left&iconset=feather -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="main-grid-item-icon" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                          <line x1="17" x2="3" y1="10" y2="10" />
+                          <line x1="21" x2="3" y1="6" y2="6" />
+                          <line x1="21" x2="3" y1="14" y2="14" />
+                          <line x1="17" x2="3" y1="18" y2="18" />
+                        </svg>
+                  </div>
+              </div>
+
+              <!-- Heading Text  -->
+              <div class="heading-text">
+                <h1>ClouldflareGPT</h1>
+                <span>3.5</span>
+                <span>
+                <!-- https://feathericons.dev/?search=chevron-down&iconset=feather -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="main-grid-item-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </span>
+              </div>
+
+              <!--  GitHub Link  -->
+              <div class="github-link">
+                <a href="https://github.com/alex-anie/ai-chat-app.git" target="_blank">
+                  <!-- SVG  -->
+                  <!-- https://feathericons.dev/?search=github&iconset=feather -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="main-grid-item-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                  </a>
+              </div>
+
+            </nav>
+        </header>
     
            <!-- Content -->
-           <div id="response">
-            
+           <div id="response" class="cus-scrollbar">
+            <article class="display-content">
+              <div class="cloudflare-logo-container">
+                  <div class="cloudflare-logo-wrapper">
+                      <div class="">
+                        <!-- SVG or Image -->
+                        <img src="https://github.com/alex-anie/ClouldflareGPT/blob/main/src/assets/clouldflare.png?raw=true" alt="">
+                      </div>
+                  </div>
+                  <h1 class="">How can I help you today?</h1>
+              </div>
+
+              <div class="sample-text">
+                  <div class="sample-text-container">
+                      <h1 class="">What is Physics</h1>
+                        <p class="">Learn about what make Physics awesome</p>
+                        <div  class="arrow-up-container">
+                          <!-- https://feathericons.dev/?search=arrow-up&iconset=feather -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" class="main-grid-item-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                              <line x1="12" x2="12" y1="19" y2="5" />
+                              <polyline points="5 12 12 5 19 12" />
+                            </svg>
+                        </div>
+                  </div>
+
+                  <div class="sample-text-container">
+                    <h1 class="">What is closure in JavaScript</h1>
+                    <p class="">Discover how to write better closure in JavaScript</p>
+                    <div  class="arrow-up-container">
+                        <!-- https://feathericons.dev/?search=arrow-up&iconset=feather -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" class="main-grid-item-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                          <line x1="12" x2="12" y1="19" y2="5" />
+                          <polyline points="5 12 12 5 19 12" />
+                        </svg>
+                    </div>
+                  </div>
+
+                  <div class="sample-text-container off">
+                    <h1 class="">Create a New Year Resolution Plan</h1>
+                    <p class="">Discover how to better new year resolution plan</p>
+                    <div  class="arrow-up-container">
+                         <!-- https://feathericons.dev/?search=arrow-up&iconset=feather -->
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" class="main-grid-item-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                          <line x1="12" x2="12" y1="19" y2="5" />
+                          <polyline points="5 12 12 5 19 12" />
+                        </svg>
+                    </div>
+                  </div>
+
+                  <div class="sample-text-container off">
+                    <h1 class="">Who was Euclid?</h1>
+                    <p class="">Considered the father of geometry</p>
+                    <div  class="arrow-up-container">
+                         <!-- https://feathericons.dev/?search=arrow-up&iconset=feather -->
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" class="main-grid-item-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                          <line x1="12" x2="12" y1="19" y2="5" />
+                          <polyline points="5 12 12 5 19 12" />
+                        </svg>
+                    </div>
+                  </div>
+              </div>
+          </article>
            </div>
     
               <!-- Input section -->
-              <section>
-                <form id="mydata">
-                  <input 
-                    autofocus
-                    name="query"
-                    placeholder="Ask CloudflareGPT any questions" 
-                    type="text" 
-                  >
-                  </input>
-                  <button type="submit">Ask</button>
-                </form>
+              <section class="input-section">
+                  <form id="mydata" class="mydata">
+                      <input autofocus name="query" placeholder="Ask CloudflareGPT any questions" type="text" id="inputData"></input>
+                      <button type="submit">
+                         <!-- https://feathericons.dev/?search=arrow-up&iconset=feather -->
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" class="main-grid-item-icon" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                          <line x1="12" x2="12" y1="19" y2="5" />
+                          <polyline points="5 12 12 5 19 12" />
+                        </svg>
+                      </button>
+                  </form>
+                  <p class="copyright">Copyright © 2024 - CloudflareGPT AI Model with llama-2-7b-chat-int8 created by <a href="https://twitter.com/alexanie_" target="_blank"  class="">Alex Anie</a></p>
                </section>
         </section>
       </article>
     </main>
 
     <script>
+      const formEl = document.querySelector("#mydata");
+      const h1Els = document.querySelectorAll(".sample-text-container");
+      const responseEl = document.querySelector("#response");
+      const inputData = document.querySelector("#inputData");
+      const historyList = document.querySelector('.history ul')
+
+      // console.log(submit)
+
       const returnResponse = async (formEvent) => {
         formEvent.preventDefault()
 
-        document.querySelector("div#response").innerHTML = ''
+        responseEl.innerHTML = '';
+        responseEl.classList.add('response', 'cus-scrollbar');
+
+        // responseEl.className = 'response';
 
         const url = `/stream?query=${formEvent.target.query.value}`
         const source = new EventSource(url)
         source.onmessage = (event) => {
+
           if (event.data === "[DONE]") {
             source.close()
             formEvent.target.query.value = ""
             return
           }
+
+          // my code
+          const li = document.createElement('li');
+            const inputData = document.querySelector('#inputData')
+            li.textContent = inputData.value;
+            historyList.appendChild(li);
+            console.log(li)
+            console.log(inputData.value)
+
+          // end
+
           const data = JSON.parse(event.data)
           document.querySelector("div#response").innerHTML += data.response
         }
       }
 
-      document.querySelector("#mydata").addEventListener("submit", returnResponse)
+      formEl.addEventListener("submit", returnResponse);
+
+      h1Els.forEach((item)=>{
+        item.addEventListener('click', (e)=>{
+          const headingContent = e.currentTarget.children[0].textContent;
+          inputData.value = headingContent;
+        })
+      })
     </script>
   </body>
 </html>
